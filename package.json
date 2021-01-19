@@ -1,0 +1,51 @@
+{
+  "name": "ultimate-text-to-image",
+  "version": "1.0.0",
+  "description": "Generate UTF8 texts into image with auto line break for all international language, including Chinese, Japanese, Korean, etc..",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "test:all": "mocha --exit tests/*.test.ts",
+    "test:sample": "mocha tests/sample.test.ts",
+    "test:lineBreakText": "mocha tests/lineBreakText.test.ts",
+    "--- deploy ---": "",
+    "tsc:build": "tsc --build --clean && tsc",
+    "npm:patch": "npm version patch"
+  },
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "linebreak-next": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.5",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.14",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nyc": "^15.0.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.2",
+    "@types/react": "^16.14.2",
+    "@types/react-dom": "^16.9.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "simple-get": "^4.0.0",
+    "lorem-ipsum": "^2.0.3"
+  },
+  "author": "Terence",
+  "license": "MIT License",
+  "keywords": [
+    "utf8",
+    "text2image",
+    "text to image",
+    "auto wrap",
+    "linebreak",
+    "line break",
+    "generate image",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terence410/ultimate-text-to-image.git"
+  }
+}

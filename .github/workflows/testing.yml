@@ -1,0 +1,37 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  testing:
+    if: startsWith(github.event.head_commit.message, '1.0') != true
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+      max-parallel: 1
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: install-${{ hashFiles('package.json') }}-${{matrix.node-version}}
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm install, build and test
+      run: |
+        npm install
+        npm run tsc:build
+        npm run test:all
