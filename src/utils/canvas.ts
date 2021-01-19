@@ -1,5 +1,5 @@
-import {CanvasRenderingContext2D, createCanvas} from "canvas";
-import {ICanvas, IDrawTextOptions, IImage} from "../types";
+import {createCanvas} from "canvas";
+import {ICanvas, IContext2D, IDrawTextOptions, IImage} from "../types";
 import {getFontString, parseColorString} from "./index";
 
 /** @internal */
@@ -10,7 +10,7 @@ export function renderHook(canvas: ICanvas, hook: ((canvas: ICanvas) => any) | u
 }
 
 /** @internal */
-export function drawBackgroundColor(ctx: CanvasRenderingContext2D, options: {color?: string | number}) {
+export function drawBackgroundColor(ctx: IContext2D, options: {color?: string | number}) {
     if (options.color || typeof options.color === "number") {
         const {width, height} = ctx.canvas;
         ctx.fillStyle = parseColorString(options.color);
@@ -19,7 +19,7 @@ export function drawBackgroundColor(ctx: CanvasRenderingContext2D, options: {col
 }
 
 /** @internal */
-export function drawBorder(ctx: CanvasRenderingContext2D, options: {color?: string | number, size: number}) {
+export function drawBorder(ctx: IContext2D, options: {color?: string | number, size: number}) {
     if (options.size && (options.color || typeof options.color === "number")) {
         const {width, height} = ctx.canvas;
         ctx.strokeStyle = parseColorString(options.color);
@@ -30,7 +30,7 @@ export function drawBorder(ctx: CanvasRenderingContext2D, options: {color?: stri
 }
 
 /** @internal */
-export function drawImages(ctx: CanvasRenderingContext2D, options: {width: number, height: number, layer: number, images: IImage[]}) {
+export function drawImages(ctx: IContext2D, options: {width: number, height: number, layer: number, images: IImage[]}) {
     const {images} = options;
 
     const canvasWidth = options.width | 0;
@@ -155,7 +155,7 @@ export function drawImages(ctx: CanvasRenderingContext2D, options: {width: numbe
 }
 
 /** @internal */
-export function drawTexts(ctx: CanvasRenderingContext2D, options: IDrawTextOptions) {
+export function drawTexts(ctx: IContext2D, options: IDrawTextOptions) {
     const {
         measuredParagraph,
         width, height,
