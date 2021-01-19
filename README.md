@@ -7,7 +7,7 @@ The actual depended package is [linebreak-next](https://www.npmjs.com/package/li
 
 This library depends on [canvas](https://www.npmjs.com/package/canvas) for rendering. Please refer to their doc for further optimization. A canvas object can be modified during the rendering phase.  
 
-![sample](https://i.imgur.com/iMKxefc.png)
+![sample](https://i.imgur.com/ACesELy.png)
 
 # Feature Highlights
 - auto wrap for utf8 texts (Chinese, Korean, Japanese, etc...)
@@ -25,12 +25,12 @@ This library depends on [canvas](https://www.npmjs.com/package/canvas) for rende
 import { UltimateTextToImage} from "ultimate-text-to-image";
 // const {UltimateTextToImage} = require("ultimate-text-to-image");
 
-new UltimateTextToImage(`abc xyz 0123456789 零一二三四五六七八九`, {width: 150, fontFamily: "Sans"})
+new UltimateTextToImage(`abc xyz 0123456789 零一二三四五六七八九`, {width: 150, fontFamily: "Arial, Sans"})
     .render()
     .toFile("image1.png");
 ```
 
-![sample](https://i.imgur.com/kMYjBk1.png)
+![sample](https://i.imgur.com/3H2lE9v.png)
 
 # Advanced
 ```typescript
@@ -188,9 +188,9 @@ const horizontalImage = new HorizontalImage([
     ]),
 ], {valign: "bottom", backgroundColor: "#AAAAAA", margin: 100});
 
-horizontalImage.render().toFile(path.join(__dirname, "imageMixed1.png"));
+horizontalImage.render().toFile(path.join(__dirname, "imageMixed1.jpg"));
 ```
-![sample](https://i.imgur.com/b02SNVQ.png)
+![sample](https://i.imgur.com/2EKpJ9K.jpg)
 
 # React
 
@@ -285,6 +285,8 @@ In Browser, we are able to measure the top, right, bottom and left padding preci
 There will be slightly different on how texts are aligned. You may need to add some margin for some cases as well.
 
 # Notes on using Font
+
+You can use fontFamily: "Arial, Sans, Noto Sans TC" in such way support fall back fonts.
 
 The registeredFont() provided by [Canvas](https://www.npmjs.com/package/canvas) is not very clear documented, and I am not expert on fonts. 
 Therefore, I have made various trial and error to draw follow conclusions and suggestions

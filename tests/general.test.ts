@@ -16,7 +16,7 @@ describe("General", () => {
 
     it("empty", async () => {
         const textToImage = new UltimateTextToImage("").render();
-        textToImage.toFile("./tests/temp/empty1.png");
+        textToImage.toFile(path.join(__dirname, "imageEmpty1.png"));
 
         const {measuredParagraph, width, height, hasRendered, renderedTime, canvas} = textToImage;
         assert.isAtLeast(renderedTime, 0);
@@ -36,20 +36,20 @@ describe("General", () => {
             align: "center",
             valign: "middle",
         }).render();
-        textToImage.toFile("./tests/temp/number1.png");
+        textToImage.toFile(path.join(__dirname, "imageNumber1.png"));
         assert.deepEqual(textToImage.measuredParagraph.measuredLines.map(x => x.text), texts);
     });
 
     it("ascii", async () => {
         const text = Array(255).fill(0).map((x, i) => String.fromCharCode(i)).join("");
         const textToImage = new UltimateTextToImage(text, {backgroundColor: ""}).render();
-        textToImage.toFile("./tests/temp/ascii1.png");
+        textToImage.toFile(path.join(__dirname, "imageAscii1.png"));
     });
 
     it("emoji", async () => {
         const text = "😀😃😄😁😆😅🤣😂😝🤑🤗🤭🤫🤔🤐🤨";
         const textToImage = new UltimateTextToImage(text).render();
-        textToImage.toFile("./tests/temp/emoji1.png", "image/png", {
+        textToImage.toFile(path.join(__dirname, "imageEmoji1.png"), "image/png", {
             compressionLevel: 9,
             backgroundIndex: 1,
             resolution: 50,
@@ -151,7 +151,7 @@ describe("General", () => {
             ],
         });
 
-        textToImage.render().toFile("./tests/temp/loadImage1.png");
+        textToImage.render().toFile(path.join(__dirname, "imageLoadImage1.png"));
     });
 
     it("font", async () => {
@@ -167,22 +167,22 @@ describe("General", () => {
         // use another font
         textToImage.options.fontFamily = "aliasName";
         const bufferB1 = textToImage.render().toBuffer();
-        textToImage.toFile("tests/temp/font1.png");
+        textToImage.toFile(path.join(__dirname, "imageFont1.png"));
 
         // same weight
         textToImage.options.fontWeight = 200;
         const bufferB2 = textToImage.render().toBuffer();
         assert.deepEqual(bufferB1, bufferB2);
-        textToImage.toFile("tests/temp/font2.png");
+        textToImage.toFile(path.join(__dirname, "imageFont2.png"));
 
         // try different weight on the alias
         textToImage.options.fontWeight = 600;
         const bufferB3 = textToImage.render().toBuffer();
-        textToImage.toFile("tests/temp/font3.png");
+        textToImage.toFile(path.join(__dirname, "imageFont3.png"));
 
         textToImage.options.fontWeight = 900;
         const bufferB4 = textToImage.render().toBuffer();
-        textToImage.toFile("tests/temp/font4.png");
+        textToImage.toFile(path.join(__dirname, "imageFont4.png"));
 
         assert.deepEqual(bufferB3, bufferB4);
         assert.notDeepEqual(bufferB2, bufferB3);
@@ -191,19 +191,19 @@ describe("General", () => {
         textToImage.options.fontFamily = "aliasNameBlack";
         textToImage.options.fontWeight = false;
         const bufferC1 = textToImage.render().toBuffer();
-        textToImage.toFile("tests/temp/font5.png");
+        textToImage.toFile(path.join(__dirname, "imageFont5.png"));
         assert.deepEqual(bufferB3, bufferC1);
 
         // this is ok now
         textToImage.options.fontFamily = "Noto Sans TC Black";
         const bufferC2 = textToImage.render().toBuffer();
-        textToImage.toFile("tests/temp/font6.png");
+        textToImage.toFile(path.join(__dirname, "imageFont6.png"));
         assert.notDeepEqual(bufferB3, bufferC2);
 
         // use the alias name, fall back to regular
         textToImage.options.fontFamily = "Noto Sans TC Medium";
         const bufferD1 = textToImage.render().toBuffer();
-        textToImage.toFile("tests/temp/font7.png");
+        textToImage.toFile(path.join(__dirname, "imageFont7.png"));
         assert.deepEqual(bufferB1, bufferD1);
     });
 
@@ -221,10 +221,10 @@ describe("General", () => {
             textToImage3,
         ], {align: "center"});
 
-        verticalImage.render().toFile(path.join(__dirname, "temp", "verticalImage1.png"));
+        verticalImage.render().toFile(path.join(__dirname, "imageVertical1.png"));
 
         verticalImage.options.backgroundColor = "#FFFFFF";
-        verticalImage.render().toFile(path.join(__dirname, "temp", "verticalImage2.jpg"));
+        verticalImage.render().toFile(path.join(__dirname, "imageVertical2.jpg"));
     });
 
     it("horizontal", async () => {
@@ -241,7 +241,7 @@ describe("General", () => {
             textToImage3,
         ], {valign: "bottom"});
 
-        horizontalImage.render().toFile(path.join(__dirname, "temp", "horizontalImage1.png"));
+        horizontalImage.render().toFile(path.join(__dirname, "imageHorizontal1.png"));
     });
 
     it("mixed", async () => {
@@ -258,7 +258,7 @@ describe("General", () => {
             new HorizontalImage([textToImage1, textToImage2, textToImage3], {valign: "middle"}),
         ], {valign: "middle"})
             .render();
-        mixed1.toFile(path.join(__dirname, "temp", "mixed1.png"));
+        mixed1.toFile(path.join(__dirname, "imageMixed1.png"));
 
         const mixed2 = new VerticalImage([
             textToImage1,
@@ -266,6 +266,6 @@ describe("General", () => {
             new VerticalImage([textToImage1, textToImage2, textToImage3], {align: "center"}),
         ], {align: "right"})
             .render();
-        mixed2.toFile(path.join(__dirname, "temp", "mixed2.png"));
+        mixed2.toFile(path.join(__dirname, "imageMixed2.png"));
     });
 });

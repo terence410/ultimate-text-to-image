@@ -3,15 +3,27 @@ import fs from "fs";
 import path from "path";
 // tslint:disable-next-line:no-var-requires
 import {getCanvasImage, HorizontalImage, registerFont, UltimateTextToImage, VerticalImage} from "../src";
-// const {getCanvasImage, HorizontalImage, registerFont, UltimateTextToImage, VerticalImage} = require("../src");
 import {ICanvas} from "../src/types";
 
 describe("Sample", () => {
     it("landing", async () => {
+        const greetings = [
+            "Hello, Nice to meet you!",
+            "你好，很高興認識你！",
+            "Hallo, schön dich kennen zu lernen!",
+            "Bonjour heureux de vous rencontrer!",
+            "こんにちは、はじめまして！",
+            "여보세요 만나서 반가워요!",
+            "Olá prazer em conhecê-lo!",
+            "¡Hola mucho gusto!",
+            "你好，很高兴认识你！",
+            "Привет! Рад тебя видеть!",
+        ];
+
         const image1 = new UltimateTextToImage("Ultimate Text To Image",
             {fontSize: 40, fontStyle: "italic", fontColor: "#FF0000", margin: 10, useGlyphPadding: false});
-        const image2 = new UltimateTextToImage("Generate texts into image with auto wrapping and many more stunning features!",
-            {width: 400, fontSize: 30, fontStyle: "italic", margin: 10, marginBottom: 20, backgroundColor: 0xFFFF0099});
+        const image2 = new UltimateTextToImage(greetings.join(" "),
+            {width: 600, fontSize: 30, fontFamily: "Sans, Droid Sans Fallback, MingLiU", fontStyle: "italic", margin: 10, marginBottom: 20, backgroundColor: 0xFFFF0099});
         const image3 = new UltimateTextToImage("http://npmjs.com/package/ultimate-text-to-image",
             {nestedAlign: "right", fontSize: 18, fontStyle: "italic", fontColor: "#999999", marginLeft: 10, marginRight: 10});
 
@@ -25,7 +37,7 @@ describe("Sample", () => {
     });
 
     it("quick start", async () => {
-        new UltimateTextToImage(`abc xyz 0123456789 零一二三四五六七八九`, {width: 150, fontFamily: "Sans"})
+        new UltimateTextToImage(`abc xyz 0123456789 零一二三四五六七八九`, {width: 150, fontFamily: "Arial, Sans"})
             .render()
             .toFile(path.join(__dirname, "image1.png"));
     });
@@ -173,7 +185,7 @@ describe("Sample", () => {
             ]),
         ], {valign: "bottom", backgroundColor: "#AAAAAA", margin: 100});
 
-        horizontalImage.render().toFile(path.join(__dirname, "imageMixed1.png"));
+        horizontalImage.render().toFile(path.join(__dirname, "imageMixed1.jpg"));
     });
 
     it("other 1", async () => {
