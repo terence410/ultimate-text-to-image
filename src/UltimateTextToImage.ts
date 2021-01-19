@@ -2,7 +2,6 @@ import { createCanvas} from "canvas";
 import {BaseClass} from "./BaseClass";
 import {Measurable} from "./Measurable";
 import {IMeasuredParagraph, IOptions, IRenderOptions} from "./types";
-import {hrtime} from "./utils";
 import {drawBackgroundColor, drawBorder, drawImages, drawTexts, renderHook} from "./utils/canvas";
 
 export class UltimateTextToImage extends BaseClass {

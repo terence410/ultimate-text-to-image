@@ -1,7 +1,6 @@
-import {Canvas, CanvasRenderingContext2D, createCanvas, JpegConfig, JPEGStream, PngConfig, PNGStream} from "canvas";
+import {Canvas, JpegConfig, JPEGStream, PngConfig, PNGStream} from "canvas";
 import fs from "fs";
-import {IBaseOptions, IOptions, IVerticalImageOptions} from "./types";
-import {UltimateTextToImage} from "./UltimateTextToImage";
+import {IBaseOptions} from "./types";
 import {hrtime} from "./utils";
 
 export class BaseClass {

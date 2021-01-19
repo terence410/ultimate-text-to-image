@@ -1,6 +1,6 @@
 import {Canvas} from "canvas";
 import {BaseClass} from "./BaseClass";
-import {IHorizontalImageOptions, IOptions, IRenderOptions, IVerticalImageOptions} from "./types";
+import {IHorizontalImageOptions, IRenderOptions} from "./types";
 import {drawBackgroundColor, renderHook} from "./utils/canvas";
 
 export class HorizontalImage extends BaseClass {

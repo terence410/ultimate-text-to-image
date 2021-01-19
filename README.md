@@ -36,6 +36,7 @@ new UltimateTextToImage(`abc xyz 0123456789 零一二三四五六七八九`, {wi
 ```typescript
 import path from "path";
 import {getCanvasImage, HorizontalImage, registerFont, UltimateTextToImage, VerticalImage} from "ultimate-text-to-image";
+// const path = require("path");
 // const {getCanvasImage, HorizontalImage, registerFont, UltimateTextToImage, VerticalImage} = require("ultimate-text-to-image");
 
 // render the image
@@ -195,7 +196,8 @@ horizontalImage.render().toFile(path.join(__dirname, "imageMixed1.png"));
 
 ```typescript jsx
 
-import {UltimateTextToImageComponent} from "ultimate-text-to-image/UltimateTextToImageComponent";
+import {UltimateTextToImageComponent} from "ultimate-text-to-image/build/UltimateTextToImageComponent";
+// const {UltimateTextToImageComponent} = require("ultimate-text-to-image/build/UltimateTextToImageComponent");
 
 function Component() {
     return <UltimateTextToImageComponent text="Hello World" fontSize={30}/>

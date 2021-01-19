@@ -257,15 +257,15 @@ describe("General", () => {
             new VerticalImage([textToImage1, textToImage2, textToImage3], {align: "right"}),
             new HorizontalImage([textToImage1, textToImage2, textToImage3], {valign: "middle"}),
         ], {valign: "middle"})
-            .render()
-            .toFile(path.join(__dirname, "temp", "mixed1.png"));
+            .render();
+        mixed1.toFile(path.join(__dirname, "temp", "mixed1.png"));
 
         const mixed2 = new VerticalImage([
             textToImage1,
             new HorizontalImage([textToImage1, textToImage2, textToImage3], {valign: "top"}),
             new VerticalImage([textToImage1, textToImage2, textToImage3], {align: "center"}),
         ], {align: "right"})
-            .render()
-            .toFile(path.join(__dirname, "temp", "mixed2.png"));
+            .render();
+        mixed2.toFile(path.join(__dirname, "temp", "mixed2.png"));
     });
 });

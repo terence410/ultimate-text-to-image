@@ -188,15 +188,15 @@ export type IMeasuredParagraphOptions = IMeasuredParagraphBaseOptions & {
 };
 
 export type ITestMeasuredParagraphOptions = IMeasuredParagraphBaseOptions & {
-    ctx: NodeCanvasRenderingContext2D,
+    ctx: IContext2D,
 };
 
 export type ITestBestMeasuredParagraphOptions = IMeasuredParagraphOptions & {
-    ctx: NodeCanvasRenderingContext2D,
+    ctx: IContext2D,
 };
 
 export type ITestMeasuredWordOptions = {
-    ctx: NodeCanvasRenderingContext2D,
+    ctx: IContext2D,
     text: string,
     fontFamily: string,
     fontWeight: IFontWeight,
