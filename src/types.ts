@@ -1,9 +1,9 @@
-import {Canvas, Image, NodeCanvasRenderingContext2D} from "canvas";
+import {Canvas, CanvasRenderingContext2D, Image} from "canvas";
 
 // region image
 
 export type ICanvas = Canvas;
-export type IContext2D = NodeCanvasRenderingContext2D;
+export type IContext2D = CanvasRenderingContext2D;
 export type IFontStyle = boolean | "italic" | "oblique";
 export type IFontWeight = boolean | "bold" | "bolder" | "lighter" |
     100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 |
