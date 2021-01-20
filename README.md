@@ -2,6 +2,13 @@
 
 Generate Unicode texts into image with auto line break for all international language, including Chinese, Japanese, Korean, Russian, etc.. You can find a lot of similar library, but hardly find any library deal with utf8 texts with auto wrapping. 
 
+[![NPM version][npm-image]][npm-url]
+
+[npm-image]: https://img.shields.io/npm/v/ultimate-text-to-image.svg
+[npm-url]: https://npmjs.org/package/ultimate-text-to-image
+[codecov-image]: https://codecov.io/gh/terence410/ultimate-text-to-image/branch/develop/graph/badge.svg?token=7RDPRFYETS
+[codecov-url]: https://codecov.io/gh/terence410/ultimate-text-to-image
+
 Thanks to [linebreak](https://www.npmjs.com/package/linebreak), we can detect the correct line break and wrapping with ease. 
 The actual depended package is [linebreak-next](https://www.npmjs.com/package/linebreak-next), which is compatible with Browser and provided by the collaborator of the original package.
 
