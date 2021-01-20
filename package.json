@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "test:all": "mocha --exit tests/*.test.ts",
+    "test:all": "nyc --reporter=json --reporter=text mocha tests/*.test.ts",
+    "test:general": "mocha tests/general.test.ts",
     "test:sample": "mocha tests/sample.test.ts",
     "test:lineBreakText": "mocha tests/lineBreakText.test.ts",
     "--- deploy ---": "",

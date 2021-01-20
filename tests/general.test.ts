@@ -8,10 +8,10 @@ import {VerticalImage} from "../src/VerticalImage";
 
 describe("General", () => {
     before(async () => {
-        registerFont("./tests/fonts/NotoSansTC-Regular.otf", {family: "aliasName", weight: 100});
-        registerFont("./tests/fonts/NotoSansTC-Bold.otf", {family: "aliasName", weight: 800});
-        registerFont("./tests/fonts/NotoSansTC-Black.otf", {family: "aliasNameBlack"});
-        registerFont("./tests/fonts/NotoSansTC-Medium.otf", {family: "Noto Sans TC Medium"});
+        registerFont(path.join(__dirname, "./fonts/NotoSansTC-Regular.otf"), {family: "aliasName", weight: 100});
+        registerFont(path.join(__dirname, "./fonts/NotoSansTC-Bold.otf"), {family: "aliasName", weight: 800});
+        registerFont(path.join(__dirname, "./fonts/NotoSansTC-Black.otf"), {family: "aliasNameBlack"});
+        registerFont(path.join(__dirname, "./fonts/NotoSansTC-Medium.otf"), {family: "Noto Sans TC Medium"});
     });
 
     it("empty", async () => {
@@ -79,9 +79,9 @@ describe("General", () => {
         const buffer2 = textToImage.toBuffer("image/png");
         const buffer3 = textToImage.toBuffer("image/jpeg", {quality: 50});
         const buffer4 = textToImage.toBuffer("image/jpeg", {quality: 95, progressive: true, chromaSubsampling: true});
-        assert.deepEqual(buffer1, buffer2);
-        assert.notDeepEqual(buffer1, buffer3);
-        assert.notDeepEqual(buffer3, buffer4);
+        assert.isTrue(buffer1.equals(buffer2));
+        assert.isFalse(buffer1.equals(buffer3));
+        assert.isFalse(buffer3.equals(buffer4));
 
         const dataUrl1 = textToImage.toDataUrl();
         const dataUrl2 = textToImage.toDataUrl("image/jpeg");
@@ -154,6 +154,26 @@ describe("General", () => {
         textToImage.render().toFile(path.join(__dirname, "imageLoadImage1.png"));
     });
 
+    it("load image, error", async () => {
+        let error1: any;
+        try {
+            await getCanvasImage({url: "http://localhost/unknown.png"});
+        } catch (err) {
+            error1 = err;
+        }
+        assert.isDefined(error1);
+        assert.equal(error1.message, "Invalid Image");
+
+        let error2: any;
+        try {
+            await getCanvasImage({base64: ""});
+        } catch (err) {
+            error2 = err;
+        }
+        assert.isDefined(error2);
+        assert.equal(error2.message, "Invalid Image");
+    });
+
     it("font", async () => {
         const texts = [`0123456789`, `零一二三四五六七八九`, `abcdefghijklmnopqrstuvwxyz`];
         const textToImage = new UltimateTextToImage(texts.join("\n"), {fontFamily: "hello", alignToCenterIfLinesLE: 10});
@@ -162,7 +182,7 @@ describe("General", () => {
         // fall back
         textToImage.options.fontFamily = "Sans";
         const bufferA2 = textToImage.render().toBuffer();
-        assert.deepEqual(bufferA1, bufferA2);
+        assert.isTrue(bufferA1.equals(bufferA2));
 
         // use another font
         textToImage.options.fontFamily = "aliasName";
@@ -172,7 +192,7 @@ describe("General", () => {
         // same weight
         textToImage.options.fontWeight = 200;
         const bufferB2 = textToImage.render().toBuffer();
-        assert.deepEqual(bufferB1, bufferB2);
+        assert.isTrue(bufferB1.equals(bufferB2));
         textToImage.toFile(path.join(__dirname, "imageFont2.png"));
 
         // try different weight on the alias
@@ -184,27 +204,27 @@ describe("General", () => {
         const bufferB4 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont4.png"));
 
-        assert.deepEqual(bufferB3, bufferB4);
-        assert.notDeepEqual(bufferB2, bufferB3);
+        assert.isTrue(bufferB3.equals(bufferB4));
+        assert.isFalse(bufferB2.equals(bufferB3));
 
         // try another font with the alias name, fall back to the bold
         textToImage.options.fontFamily = "aliasNameBlack";
         textToImage.options.fontWeight = false;
         const bufferC1 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont5.png"));
-        assert.deepEqual(bufferB3, bufferC1);
+        assert.isTrue(bufferB3.equals(bufferC1));
 
         // this is ok now
         textToImage.options.fontFamily = "Noto Sans TC Black";
         const bufferC2 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont6.png"));
-        assert.notDeepEqual(bufferB3, bufferC2);
+        assert.isFalse(bufferB3.equals(bufferC2));
 
         // use the alias name, fall back to regular
         textToImage.options.fontFamily = "Noto Sans TC Medium";
         const bufferD1 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont7.png"));
-        assert.deepEqual(bufferB1, bufferD1);
+        assert.isTrue(bufferB1.equals(bufferD1));
     });
 
     it("vertical", async () => {
