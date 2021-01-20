@@ -213,6 +213,8 @@ describe("General", () => {
         const bufferC1 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont5.png"));
         // assert.isTrue(bufferB3.equals(bufferC1));
+        console.log("bufferC1", bufferC1.equals(bufferA1));
+        console.log("bufferC2", bufferC1.equals(bufferA2));
 
         // this is ok now
         textToImage.options.fontFamily = "Noto Sans TC Black";
@@ -220,10 +222,19 @@ describe("General", () => {
         textToImage.toFile(path.join(__dirname, "imageFont6.png"));
         assert.isFalse(bufferB3.equals(bufferC2));
 
+        console.log("bufferC2", bufferC2.equals(bufferA1));
+        console.log("bufferC2", bufferC2.equals(bufferA2));
+        console.log("bufferC2", bufferC2.equals(bufferC1));
+
         // use the alias name, fall back to regular
         textToImage.options.fontFamily = "Noto Sans TC Medium";
         const bufferD1 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont7.png"));
+        console.log("bufferD1", bufferD1.equals(bufferA1));
+        console.log("bufferD2", bufferD1.equals(bufferA2));
+        console.log("bufferD2", bufferD1.equals(bufferC1));
+        console.log("bufferD2", bufferD1.equals(bufferC2));
+
         assert.isTrue(bufferB1.equals(bufferD1));
     });
 
