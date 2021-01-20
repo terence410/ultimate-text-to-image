@@ -179,33 +179,34 @@ describe("General", () => {
         const textToImage = new UltimateTextToImage(texts.join("\n"), {fontFamily: "hello", alignToCenterIfLinesLE: 10});
         const bufferA1 = textToImage.render().toBuffer();
 
-        // fall back
+        // fall back to Sans
         textToImage.options.fontFamily = "Sans";
         const bufferA2 = textToImage.render().toBuffer();
         assert.isTrue(bufferA1.equals(bufferA2));
 
-        // use another font
+        // use the registered font
         textToImage.options.fontFamily = "aliasName";
         const bufferB1 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont1.png"));
+        assert.isFalse(bufferB1.equals(bufferA1));
 
-        // same weight
+        // use the registered font (have weight)
         textToImage.options.fontWeight = 200;
         const bufferB2 = textToImage.render().toBuffer();
         assert.isTrue(bufferB1.equals(bufferB2));
         textToImage.toFile(path.join(__dirname, "imageFont2.png"));
 
-        // try different weight on the alias
+        // use the registered font (have more weight)
         textToImage.options.fontWeight = 600;
         const bufferB3 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont3.png"));
+        assert.isFalse(bufferB3.equals(bufferB2));
 
+        // use the registered font (have more weight)
         textToImage.options.fontWeight = 900;
         const bufferB4 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont4.png"));
-
-        assert.isTrue(bufferB3.equals(bufferB4));
-        assert.isFalse(bufferB2.equals(bufferB3));
+        assert.isTrue(bufferB4.equals(bufferB3));
 
         // try another font with the alias name, fall back to the bold
         textToImage.options.fontFamily = "aliasNameBlack";
@@ -214,7 +215,9 @@ describe("General", () => {
         textToImage.toFile(path.join(__dirname, "imageFont5.png"));
         // assert.isTrue(bufferB3.equals(bufferC1));
         console.log("bufferC1", bufferC1.equals(bufferA1));
-        console.log("bufferC2", bufferC1.equals(bufferA2));
+        console.log("bufferC1", bufferC1.equals(bufferA2));
+        console.log("bufferC1", bufferC1.equals(bufferB1));
+        console.log("bufferC1", bufferC1.equals(bufferB2));
 
         // this is ok now
         textToImage.options.fontFamily = "Noto Sans TC Black";
@@ -224,6 +227,8 @@ describe("General", () => {
 
         console.log("bufferC2", bufferC2.equals(bufferA1));
         console.log("bufferC2", bufferC2.equals(bufferA2));
+        console.log("bufferC2", bufferC2.equals(bufferB1));
+        console.log("bufferC2", bufferC2.equals(bufferB2));
         console.log("bufferC2", bufferC2.equals(bufferC1));
 
         // use the alias name, fall back to regular
@@ -231,9 +236,11 @@ describe("General", () => {
         const bufferD1 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont7.png"));
         console.log("bufferD1", bufferD1.equals(bufferA1));
-        console.log("bufferD2", bufferD1.equals(bufferA2));
-        console.log("bufferD2", bufferD1.equals(bufferC1));
-        console.log("bufferD2", bufferD1.equals(bufferC2));
+        console.log("bufferD1", bufferD1.equals(bufferA2));
+        console.log("bufferD1", bufferD1.equals(bufferB1));
+        console.log("bufferD1", bufferD1.equals(bufferB2));
+        console.log("bufferD1", bufferD1.equals(bufferC1));
+        console.log("bufferD1", bufferD1.equals(bufferC2));
 
         assert.isTrue(bufferB1.equals(bufferD1));
     });
