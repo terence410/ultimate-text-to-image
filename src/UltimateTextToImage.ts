@@ -8,7 +8,7 @@ export class UltimateTextToImage extends BaseClass {
     public static measurable = new Measurable();
     public static maxSize = 2 << 14 - 1;
 
-    public _measuredParagraph?: IMeasuredParagraph;
+    private _measuredParagraph?: IMeasuredParagraph;
     private _defaultOptions: IOptions = {
         width: undefined,
         height: undefined,
