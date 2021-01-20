@@ -1,6 +1,6 @@
 # Ultimate Text To Image
 
-Generate UTF8 texts into image with auto line break for all international language, including Chinese, Japanese, Korean, etc.. You can find a lot of similar library, but hardly find any library deal with utf8 texts with auto wrapping. 
+Generate Unicode texts into image with auto line break for all international language, including Chinese, Japanese, Korean, Russian, etc.. You can find a lot of similar library, but hardly find any library deal with utf8 texts with auto wrapping. 
 
 Thanks to [linebreak](https://www.npmjs.com/package/linebreak), we can detect the correct line break and wrapping with ease. 
 The actual depended package is [linebreak-next](https://www.npmjs.com/package/linebreak-next), which is compatible with Browser and provided by the collaborator of the original package.
@@ -10,7 +10,7 @@ This library depends on [canvas](https://www.npmjs.com/package/canvas) for rende
 ![sample](https://i.imgur.com/ACesELy.png)
 
 # Feature Highlights
-- auto wrap for utf8 texts (Chinese, Korean, Japanese, etc...)
+- auto wrap for unicode texts (Chinese, Korean, Japanese, etc...)
 - support adding image with various position & repeat features
 - perfect alignment of texts by detecting the actual drawing pixels of glyphs
 - library works for NodeJs & browser, react component is provided
@@ -337,6 +337,8 @@ new UltimateTextToImage("text", {fontFamily: "Noto Sans TC Thin"});
 new UltimateTextToImage("text", {fontFamily: "Noto Sans TC Medium"}); 
 ``` 
 
+** Testing above is done on Windows, the behaviors may be different on Linux
+ 
 As a final conclusion, I recommend you to install the font into system and use actual font name to reduce any unclear outcome. 
 You can still use registerFont, but be sure you did enough testing on it.    
 

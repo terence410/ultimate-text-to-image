@@ -215,40 +215,19 @@ describe("General", () => {
         textToImage.toFile(path.join(__dirname, "imageFont5.png"));
 
         // for windows, this is true, while in linux, the alias seems work properly
-        const hasFallback = bufferB3.equals(bufferC1);
-        // assert.isTrue(bufferB3.equals(bufferC1));
-        // console.log("bufferC1", bufferC1.equals(bufferA1));
-        // console.log("bufferC1", bufferC1.equals(bufferA2));
-        // console.log("bufferC1", bufferC1.equals(bufferB1));
-        // console.log("bufferC1", bufferC1.equals(bufferB2));
-
-        console.log(JSON.stringify(textToImage.measuredParagraph, null, 2));
+        const fallbackExist = bufferB3.equals(bufferC1);
 
         // this is ok now
         textToImage.options.fontFamily = "Noto Sans TC Black";
         const bufferC2 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont6.png"));
-        assert.equal(bufferC2.equals(bufferC1), !hasFallback);
-
-        console.log("bufferC2", bufferC2.equals(bufferA1));
-        console.log("bufferC2", bufferC2.equals(bufferA2));
-        console.log("bufferC2", bufferC2.equals(bufferB1));
-        console.log("bufferC2", bufferC2.equals(bufferB2));
-        console.log("bufferC2", bufferC2.equals(bufferC1));
+        assert.equal(bufferC2.equals(bufferC1), !fallbackExist);
 
         // use the alias name, fall back to regular
         textToImage.options.fontFamily = "Noto Sans TC Medium";
         const bufferD1 = textToImage.render().toBuffer();
         textToImage.toFile(path.join(__dirname, "imageFont7.png"));
-        assert.equal(bufferD1.equals(bufferB1), hasFallback);
-
-        console.log("bufferD1", bufferD1.equals(bufferA1));
-        console.log("bufferD1", bufferD1.equals(bufferA2));
-        console.log("bufferD1", bufferD1.equals(bufferB1));
-        console.log("bufferD1", bufferD1.equals(bufferB2));
-        console.log("bufferD1", bufferD1.equals(bufferC1));
-        console.log("bufferD1", bufferD1.equals(bufferC2));
-        
+        assert.equal(bufferD1.equals(bufferB1), fallbackExist);
     });
 
     it("vertical", async () => {

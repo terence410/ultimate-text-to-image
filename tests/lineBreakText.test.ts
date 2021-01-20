@@ -1,5 +1,5 @@
 import { assert, expect } from "chai";
-import {LineBreakText} from "../src/LineBreakText";
+import {UnicodeLineBreak} from "../src/UnicodeLineBreak";
 
 describe("Text Line Break Test", () => {
     it("basic", async () => {
@@ -14,8 +14,8 @@ describe("Text Line Break Test", () => {
         ];
 
         for (const [text, testResults] of testCases) {
-            const lineBreakText = new LineBreakText(text);
-            const results = lineBreakText.getResults();
+            const unicodeLineBreak = new UnicodeLineBreak(text);
+            const results = unicodeLineBreak.getResults();
             assert.deepEqual(results.map(x => x.word), testResults);
         }
     });

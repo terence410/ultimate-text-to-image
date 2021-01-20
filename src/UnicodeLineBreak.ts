@@ -3,7 +3,7 @@ import {ILineBreak, ILineBreakIterator, ILineBreakResult} from "./types";
 // tslint:disable-next-line:no-var-requires variable-name
 const LineBreakNext = require("linebreak-next") as ILineBreak ;
 
-export class LineBreakText {
+export class UnicodeLineBreak {
     constructor(public text: string) {
         //
     }

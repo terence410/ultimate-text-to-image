@@ -1,5 +1,5 @@
 import {createCanvas} from "canvas";
-import {LineBreakText} from "./LineBreakText";
+import {UnicodeLineBreak} from "./UnicodeLineBreak";
 import {
     IMeasurable,
     IMeasuredLine,
@@ -232,9 +232,8 @@ export class Measurable {
     private testMeasureWords(options: ITestMeasuredWordGroupOptions) {
         const measuredWords: IMeasuredWord[] = [];
 
-        const lineBreakText = new LineBreakText(options.text);
-
-        for (const item of lineBreakText) {
+        const unicodeLineBreak = new UnicodeLineBreak(options.text);
+        for (const item of unicodeLineBreak) {
             const word = item.word;
             const trimmedWord = word.trimRight();
             const measuredWord = this.testMeasuredWord({...options, text: trimmedWord});
