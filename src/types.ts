@@ -27,6 +27,13 @@ export type IImage = {
     ty?: number,
 };
 
+export type IGetCanvasImageOptions = {
+    buffer?: Buffer,
+    base64?: string,
+    url?: string,
+    arrayBuffer?: ReadonlyArray<number> | Uint8Array | string
+};
+
 // endregion
 
 // region library options

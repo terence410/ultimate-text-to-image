@@ -6,8 +6,6 @@ Generate Unicode texts into image with auto line break for all international lan
 
 [npm-image]: https://img.shields.io/npm/v/ultimate-text-to-image.svg
 [npm-url]: https://npmjs.org/package/ultimate-text-to-image
-[codecov-image]: https://codecov.io/gh/terence410/ultimate-text-to-image/branch/develop/graph/badge.svg?token=7RDPRFYETS
-[codecov-url]: https://codecov.io/gh/terence410/ultimate-text-to-image
 
 Thanks to [linebreak](https://www.npmjs.com/package/linebreak), we can detect the correct line break and wrapping with ease. 
 The actual depended package is [linebreak-next](https://www.npmjs.com/package/linebreak-next), which is compatible with Browser and provided by the collaborator of the original package.
@@ -346,7 +344,7 @@ new UltimateTextToImage("text", {fontFamily: "Noto Sans TC Medium"});
 
 ** Testing above is done on Windows, the behaviors may be different on Linux
  
-As a final conclusion, I recommend you to install the font into system and use actual font name to reduce any unclear outcome. 
+As a final conclusion, I you to install the font into system and use actual font name to reduce any unclear outcome. 
 You can still use registerFont, but be sure you did enough testing on it.    
 
 # Fonts in browser

@@ -1,7 +1,8 @@
 import * as canvas from "canvas";
 import {concat} from "simple-get";
+import {IGetCanvasImageOptions} from "./types";
 
-export const getCanvasImage = async (options: {buffer?: Buffer, base64?: string, url?: string, arrayBuffer?: ReadonlyArray<number> | Uint8Array | ArrayBuffer} ) => {
+export const getCanvasImage = async (options: IGetCanvasImageOptions ) => {
     if (options.buffer) {
         const newBase64 = `data:image/jpg;base64,${options.buffer.toString("base64")}`;
         return await canvas.loadImage(newBase64);
