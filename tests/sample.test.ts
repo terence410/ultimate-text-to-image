@@ -245,4 +245,36 @@ describe("Sample", () => {
         });
         textToImage.render().toFile(path.join(__dirname, "imageOther3.png"));
     });
+
+    it("shadow", async () => {
+        const text = "Text with shadow";
+        const textToImage = new UltimateTextToImage(text, {
+            width: 600,
+            height: 600,
+            fontSize: 50,
+            alignToCenterIfLinesLE: 1,
+            fontColor: '#ffffff',
+            backgroundColor: '#ffffff',
+            shadowColor: '#000000',
+            shadowBlur: 10,
+            shadowBlurLineWidth: 2,
+        });
+        textToImage.render().toFile(path.join(__dirname, "imageTextWithShadow.png"));
+    });
+
+    it("no shadow", async () => {
+        const text = "Text without shadow";
+        const textToImage = new UltimateTextToImage(text, {
+            width: 600,
+            height: 600,
+            fontSize: 50,
+            alignToCenterIfLinesLE: 1,
+            fontColor: '#000000',
+            backgroundColor: '#ffffff',
+            shadowColor: undefined,
+            shadowBlur: 0,
+            shadowBlurLineWidth: 0,
+        });
+        textToImage.render().toFile(path.join(__dirname, "imageTextWithoutShadow.png"));
+    });
 });

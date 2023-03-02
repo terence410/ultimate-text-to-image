@@ -87,6 +87,9 @@ export type IOptions = IBaseOptions & {
 
     images: IImage[],
 
+    shadowColor?: string,
+    shadowBlur: number,
+    shadowBlurLineWidth: number,
 };
 
 export type IVerticalImageOptions = IBaseOptions & {
@@ -130,6 +133,10 @@ export type IDrawTextOptions = {
 
     underlineColor: string | number,
     underlineSize: number,
+
+    shadowColor?: string,
+    shadowBlur: number,
+    shadowBlurLineWidth: number,
 };
 
 // endregion
@@ -192,6 +199,9 @@ export type IMeasuredParagraphOptions = IMeasuredParagraphBaseOptions & {
     maxFontSize: number,
     minFontSize: number,
     useGlyphPadding: boolean,
+    shadowColor?: string,
+    shadowBlur: number,
+    shadowBlurLineWidth: number,
 };
 
 export type ITestMeasuredParagraphOptions = IMeasuredParagraphBaseOptions & {
