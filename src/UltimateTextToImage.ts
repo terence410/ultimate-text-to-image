@@ -54,6 +54,10 @@ export class UltimateTextToImage extends BaseClass {
 
         nestedAlign: undefined,
         nestedValign: undefined,
+
+        shadowColor: undefined,
+        shadowBlur: 0,
+        shadowBlurLineWidth: 0,
     };
 
     constructor(public  text: string, public options: Partial<IOptions> = {}, public renderOptions: Partial<IRenderOptions> = {}) {
@@ -90,6 +94,7 @@ export class UltimateTextToImage extends BaseClass {
             noAutoWrap, fontFamily, fontStyle, fontWeight, fontSize,
             chopOverflow, useGlyphPadding, underlineSize, underlineColor,
             images,
+            shadowColor, shadowBlur, shadowBlurLineWidth,
         } = options;
         let {maxWidth, maxHeight, minFontSize} = options;
 
@@ -127,6 +132,8 @@ export class UltimateTextToImage extends BaseClass {
             lineHeightMultiplier: options.lineHeightMultiplier,
             autoWrapLineHeight: options.autoWrapLineHeight,
             autoWrapLineHeightMultiplier: options.autoWrapLineHeightMultiplier,
+
+            shadowColor, shadowBlur, shadowBlurLineWidth,
         });
 
         // prepared update varaibles
@@ -213,6 +220,10 @@ export class UltimateTextToImage extends BaseClass {
 
             underlineSize,
             underlineColor,
+
+            shadowColor: options.shadowColor,
+            shadowBlur: options.shadowBlur,
+            shadowBlurLineWidth: options.shadowBlurLineWidth,
         });
 
         drawImages(ctx, {width: finalWidth, height: finalHeight, layer: 1, images});

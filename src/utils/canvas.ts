@@ -163,6 +163,7 @@ export function drawTexts(ctx: IContext2D, options: IDrawTextOptions) {
         valign, align,
         marginLeft, marginTop, marginRight, marginBottom, chopOverflow, useGlyphPadding,
         underlineSize, underlineColor,
+        shadowColor, shadowBlur, shadowBlurLineWidth,
     } = options;
 
     // return immediately if nothing to draw
@@ -219,6 +220,23 @@ export function drawTexts(ctx: IContext2D, options: IDrawTextOptions) {
             textCtx.strokeStyle = parseColorString(strokeColor);
             textCtx.lineWidth = strokeSize;
             textCtx.strokeText(measuredLine.text, x + renderMargin, y + renderMargin);
+        }
+
+        // draw the shadow if have
+        if (shadowColor) {
+            const parsedShadowColor = parseColorString(shadowColor);
+
+            textCtx.shadowColor = parsedShadowColor;
+            textCtx.shadowBlur = shadowBlur;
+            textCtx.lineWidth = shadowBlurLineWidth;
+            textCtx.strokeText(measuredLine.text, x + renderMargin, y + renderMargin);
+
+            textCtx.strokeStyle = parsedShadowColor;
+            textCtx.strokeText(measuredLine.text, x + renderMargin, y + renderMargin);
+
+            textCtx.shadowBlur = 0;
+            textCtx.fillStyle = parsedFontColor;
+            textCtx.fillText(measuredLine.text, x + renderMargin, y + renderMargin);
         }
 
         // advance y

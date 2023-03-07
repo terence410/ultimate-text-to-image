@@ -248,6 +248,9 @@ borderSize|number|0 |border size
 backgroundColor|number / string|""|same as fontColor
 underlineSize|number|0 |underline size
 underlineColor|number / string|#000000 |same as fontColor
+shadowColor|string|undefined|shadow color
+shadowBlur|number|0|shadow blur
+shadowBlurLineWidth|number|0|shadow blur line width
 images|array|[]|see below
 image.canvasImage|CanvasImage| |get the CanvasImage object by calling getCanvasImage(). Please refer to the coding sample
 image.layer|number|0|0: below background color and border. 1: below the texts, 2: above the texts
