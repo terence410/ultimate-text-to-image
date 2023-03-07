@@ -1,6 +1,6 @@
 {
   "name": "ultimate-text-to-image",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate UTF8 texts into image with auto line break for all international language, including Chinese, Japanese, Korean, etc..",
   "main": "build/index.js",
   "types": "build/index.d.ts",
