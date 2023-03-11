@@ -11,8 +11,8 @@ https://github.com/terence410/ultimate-text-to-image/pull/9
 # Options for UltimateTextToImage
 | Name | Type | Default | Usage |
 | --- | --- | --- | --- |
-shadowColor|string|undefined|shadow color
+shadowColor|string|""|shadow color
 shadowBlur|number|0|shadow blur
 shadowBlurLineWidth|number|0|shadow blur line width
 
-**All options available in original package link, see above.**
+**All options available in original package, see above.**

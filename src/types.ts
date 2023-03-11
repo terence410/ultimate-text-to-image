@@ -87,7 +87,7 @@ export type IOptions = IBaseOptions & {
 
     images: IImage[],
 
-    shadowColor?: string,
+    shadowColor: string,
     shadowBlur: number,
     shadowBlurLineWidth: number,
 };
@@ -134,7 +134,7 @@ export type IDrawTextOptions = {
     underlineColor: string | number,
     underlineSize: number,
 
-    shadowColor?: string,
+    shadowColor: string,
     shadowBlur: number,
     shadowBlurLineWidth: number,
 };
@@ -199,7 +199,7 @@ export type IMeasuredParagraphOptions = IMeasuredParagraphBaseOptions & {
     maxFontSize: number,
     minFontSize: number,
     useGlyphPadding: boolean,
-    shadowColor?: string,
+    shadowColor: string,
     shadowBlur: number,
     shadowBlurLineWidth: number,
 };

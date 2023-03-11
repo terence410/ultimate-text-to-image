@@ -253,13 +253,29 @@ describe("Sample", () => {
             height: 600,
             fontSize: 50,
             alignToCenterIfLinesLE: 1,
-            fontColor: '#ffffff',
-            backgroundColor: '#ffffff',
-            shadowColor: '#000000',
+            fontColor: "#ffffff",
+            backgroundColor: "#ffffff",
+            shadowColor: "#000000",
             shadowBlur: 10,
             shadowBlurLineWidth: 2,
         });
         textToImage.render().toFile(path.join(__dirname, "imageTextWithShadow.png"));
+    });
+
+    it("shadow no color", async () => {
+        const text = "Text with shadow no color";
+        const textToImage = new UltimateTextToImage(text, {
+            width: 600,
+            height: 600,
+            fontSize: 50,
+            alignToCenterIfLinesLE: 1,
+            fontColor: "#ffffff",
+            backgroundColor: "#ffffff",
+            shadowColor: "",
+            shadowBlur: 10,
+            shadowBlurLineWidth: 2,
+        });
+        textToImage.render().toFile(path.join(__dirname, "imageTextWithShadowNoColor.png"));
     });
 
     it("no shadow", async () => {
