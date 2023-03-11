@@ -1,6 +1,6 @@
 {
   "name": "ultimate-text-to-image-with-shadow",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Generate UTF8 texts into image with auto line break for all international language, including Chinese, Japanese, Korean, etc..",
   "main": "build/index.js",
   "types": "build/index.d.ts",
