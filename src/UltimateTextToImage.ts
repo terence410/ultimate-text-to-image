@@ -2,7 +2,7 @@ import { createCanvas} from "canvas";
 import {BaseClass} from "./BaseClass";
 import {Measurable} from "./Measurable";
 import {IMeasuredParagraph, IOptions, IRenderOptions} from "./types";
-import {drawBackgroundColor, drawBorder, drawImages, drawTexts, renderHook} from "./utils/canvas";
+import {drawBackgroundColor, drawBorder, drawImages, drawSubstrate, drawTexts, renderHook} from "./utils/canvas";
 
 export class UltimateTextToImage extends BaseClass {
     public static measurable = new Measurable();
@@ -58,6 +58,8 @@ export class UltimateTextToImage extends BaseClass {
         shadowColor: "",
         shadowBlur: 0,
         shadowBlurLineWidth: 0,
+
+        substrate: { left: 0, top: 0, right: 0, bottom: 0, color: "" },
     };
 
     constructor(public  text: string, public options: Partial<IOptions> = {}, public renderOptions: Partial<IRenderOptions> = {}) {
@@ -95,6 +97,7 @@ export class UltimateTextToImage extends BaseClass {
             chopOverflow, useGlyphPadding, underlineSize, underlineColor,
             images,
             shadowColor, shadowBlur, shadowBlurLineWidth,
+            substrate,
         } = options;
         let {maxWidth, maxHeight, minFontSize} = options;
 
@@ -191,6 +194,22 @@ export class UltimateTextToImage extends BaseClass {
 
         // draw images
         drawImages(ctx, {width: finalWidth, height: finalHeight, layer: 0, images});
+
+        // draw substrate
+        drawSubstrate(ctx, {
+            measuredParagraph,
+            width: finalWidth,
+            height: finalHeight,
+            valign: finalValign,
+            align: finalAlign,
+            marginLeft,
+            marginTop,
+            marginRight,
+            marginBottom,
+            chopOverflow,
+            useGlyphPadding,
+            substrate,
+        });
 
         // draw texts
         drawTexts(ctx, {

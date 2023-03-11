@@ -1,5 +1,5 @@
 import {createCanvas} from "canvas";
-import {ICanvas, IContext2D, IDrawTextOptions, IImage} from "../types";
+import {ICanvas, IContext2D, IDrawTextOptions, IDrawSubstrateOptions, IImage} from "../types";
 import {getFontString, parseColorString} from "./index";
 
 /** @internal */
@@ -152,6 +152,75 @@ export function drawImages(ctx: IContext2D, options: {width: number, height: num
             }
         }
     }
+}
+
+/** @internal */
+export function drawSubstrate(ctx: IContext2D, options: IDrawSubstrateOptions) {
+    const { 
+        measuredParagraph, 
+        width, height, 
+        valign, align, 
+        marginLeft, marginTop, marginRight, marginBottom, 
+        chopOverflow, useGlyphPadding, 
+        substrate, 
+    } = options;
+
+    if (!measuredParagraph.measuredLines.length || substrate.color === "") {
+        return;
+    }
+
+    const textCanvasWidth = useGlyphPadding ? measuredParagraph.boundingWidth : measuredParagraph.width;
+    const textCanvasHeight = useGlyphPadding ? measuredParagraph.boundingHeight : measuredParagraph.height;
+
+    let x = 0;
+    let y = 0;
+
+    if (align === "center") {
+        x = (textCanvasWidth - width - marginLeft + marginRight) / 2;
+        
+        if (chopOverflow) {
+            x += marginLeft;
+        }
+    }
+    else if (align === "right") {
+        x = textCanvasWidth - width + marginRight;
+
+        if (chopOverflow) {
+            x += marginLeft;
+        }
+    }
+    else { // left
+        x = -marginLeft;
+    }
+
+    if (valign === "bottom") {
+        y = textCanvasHeight - height + marginBottom;
+
+        if (chopOverflow) {
+            y += marginTop;
+        }
+    }
+    else if (valign === "middle") {
+        y = (textCanvasHeight - height - marginTop + marginBottom) / 2;
+
+        if (chopOverflow) {
+            y += marginTop;
+        }
+    }
+    else { // top
+        y = -marginTop;
+    }
+
+    x *= -1;
+    y *= -1;
+
+    ctx.fillStyle = parseColorString(substrate.color);
+    ctx.fillRect(
+        x - substrate.left,
+        y - substrate.top,
+        textCanvasWidth + substrate.left + substrate.right,
+        textCanvasHeight + substrate.top + substrate.bottom
+    );
 }
 
 /** @internal */

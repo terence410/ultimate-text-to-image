@@ -293,4 +293,93 @@ describe("Sample", () => {
         });
         textToImage.render().toFile(path.join(__dirname, "imageTextWithoutShadow.png"));
     });
+
+    it("substrate no padding", async () => {
+        const text = "Text with substrate";
+        const textToImage = new UltimateTextToImage(text, {
+            width: 600,
+            height: 600,
+            fontSize: 50,
+            alignToCenterIfLinesLE: 1,
+            fontColor: "#ffffff",
+            backgroundColor: "#ffffff",
+            substrate: { left: 0, top: 0, bottom: 0, right: 0, color: "#000000" },
+        });
+        textToImage.render().toFile(path.join(__dirname, "imageSubstrateNoPadding.png"));
+    });
+
+    it("substrate with equal padding", async () => {
+        const text = "Text with substrate";
+        const textToImage = new UltimateTextToImage(text, {
+            width: 600,
+            height: 600,
+            fontSize: 50,
+            alignToCenterIfLinesLE: 1,
+            fontColor: "#ffffff",
+            backgroundColor: "#ffffff",
+            substrate: { left: 20, top: 20, bottom: 20, right: 20, color: "#FF0000" },
+        });
+        textToImage.render().toFile(path.join(__dirname, "imageSubstrateWithEqualPadding.png"));
+    });
+
+    it("substrate with not equal padding", async () => {
+        const text = "Text with substrate";
+        const textToImage = new UltimateTextToImage(text, {
+            width: 600,
+            height: 600,
+            fontSize: 50,
+            alignToCenterIfLinesLE: 1,
+            fontColor: "#ffffff",
+            backgroundColor: "#ffffff",
+            substrate: { left: 10, top: 20, bottom: 30, right: 40, color: "#000000" },
+        });
+        textToImage.render().toFile(path.join(__dirname, "imageSubstrateWithNotEqualPadding.png"));
+    });
+
+    it("substrate with not equal padding with marings", async () => {
+        const text = "Text with substrate";
+        const textToImage = new UltimateTextToImage(text, {
+            width: 600,
+            height: 600,
+            fontSize: 50,
+            marginLeft: 20,
+            marginTop: 40,
+            marginBottom: 60,
+            marginRight: 80,
+            fontColor: "#ffffff",
+            backgroundColor: "#ffffff",
+            substrate: { left: 10, top: 20, bottom: 30, right: 40, color: "#000000" },
+        });
+        textToImage.render().toFile(path.join(__dirname, "imageSubstrateWithNotEqualPaddingAndMarings.png"));
+    });
+
+    it("substrate with not equal padding with marings", async () => {
+        const texts = [
+            "Hello, Nice to meet you!",
+            "你好，很高興認識你！",
+            "Hallo, schön dich kennen zu lernen!",
+            "Bonjour heureux de vous rencontrer!",
+            "こんにちは、はじめまして！",
+            "여보세요 만나서 반가워요!",
+            "Olá prazer em conhecê-lo!",
+            "¡Hola mucho gusto!",
+            "你好，很高兴认识你！",
+            "Привет! Рад тебя видеть!",
+        ];
+
+        for (let i = 0; i < texts.length; i++) {
+            const text = texts[i];            
+            const textToImage = new UltimateTextToImage(text, {
+                width: 600,
+                height: 600,
+                fontSize: 40,
+                marginTop: 100,
+                marginLeft: 40,
+                fontColor: "#ffffff",
+                backgroundColor: "#ffffff",
+                substrate: { left: 20, top: 20, bottom: 20, right: 20, color: "#FF0000" },
+            });
+            textToImage.render().toFile(path.join(__dirname, `imageSubstrateWithEqualPaddingLang${i}.png`));
+        }
+    });
 });

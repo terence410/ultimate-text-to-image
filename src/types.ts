@@ -27,6 +27,14 @@ export type IImage = {
     ty?: number,
 };
 
+export type ISubstrate = {
+    left: number,
+    top: number,
+    bottom: number,
+    right: number,
+    color: string,
+};
+
 export type IGetCanvasImageOptions = {
     buffer?: Buffer,
     base64?: string,
@@ -90,6 +98,8 @@ export type IOptions = IBaseOptions & {
     shadowColor: string,
     shadowBlur: number,
     shadowBlurLineWidth: number,
+
+    substrate: ISubstrate,
 };
 
 export type IVerticalImageOptions = IBaseOptions & {
@@ -137,6 +147,25 @@ export type IDrawTextOptions = {
     shadowColor: string,
     shadowBlur: number,
     shadowBlurLineWidth: number,
+};
+
+export type IDrawSubstrateOptions = {
+    measuredParagraph: IMeasuredParagraph,
+
+    width: number,
+    height: number,
+
+    valign: string,
+    align: string,
+
+    marginLeft: number,
+    marginTop: number,
+    marginRight: number,
+    marginBottom: number,
+    chopOverflow: boolean,
+    useGlyphPadding: boolean,
+
+    substrate: ISubstrate,
 };
 
 // endregion
