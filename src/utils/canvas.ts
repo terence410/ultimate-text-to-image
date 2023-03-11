@@ -183,6 +183,8 @@ export function drawTexts(ctx: IContext2D, options: IDrawTextOptions) {
 
     // we draw everything cuz align may need to display different parts (this can be optimized a bit if necessary)
     let y = useGlyphPadding ? fontSize + measuredParagraph.measuredLines[0].paddingTop : fontSize;
+    const parsedShadowColor = shadowColor !== "" ? parseColorString(shadowColor) : "";
+    const hasShadow = shadowBlur > 0 || shadowBlurLineWidth > 0;
     for (const measuredLine of measuredParagraph.measuredLines) {
         let x = 0;
 
@@ -223,9 +225,7 @@ export function drawTexts(ctx: IContext2D, options: IDrawTextOptions) {
         }
 
         // draw the shadow if have
-        if (shadowColor) {
-            const parsedShadowColor = parseColorString(shadowColor);
-
+        if (hasShadow) {
             textCtx.shadowColor = parsedShadowColor;
             textCtx.shadowBlur = shadowBlur;
             textCtx.lineWidth = shadowBlurLineWidth;

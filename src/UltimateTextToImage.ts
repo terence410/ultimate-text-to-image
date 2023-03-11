@@ -55,7 +55,7 @@ export class UltimateTextToImage extends BaseClass {
         nestedAlign: undefined,
         nestedValign: undefined,
 
-        shadowColor: undefined,
+        shadowColor: "",
         shadowBlur: 0,
         shadowBlurLineWidth: 0,
     };
