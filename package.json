@@ -13,8 +13,10 @@
     "tsc:build": "tsc --build --clean && tsc",
     "npm:patch": "npm version patch"
   },
+  "peerDependencies": {
+    "canvas": "^2.10.2"
+  },
   "dependencies": {
-    "canvas": "^2.10.2",
     "linebreak-next": "^1.0.3"
   },
   "devDependencies": {
